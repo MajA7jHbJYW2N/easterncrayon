@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright © (C) 2014
+    Emory Hughes Merryman, III
+    emory.merryman@gmail.com
+-->
+<!--
+    This file is part of EasternCrayon.
+
+    EasternCrayon is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    EasternCrayon is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with EasternCrayon.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<project name="easterncrayon" basedir="." default="publish" xmlns:ivy="antlib:org.apache.ivy.ant">
+  <tempfile property="repository.dir" destdir="java.io.tmpdir"/>
+  <property name="ivy.install.version" value="2.1.0-rc2" />
+  <property name="ivy.jar.file" value="${basedir}/ivy.jar" />
+  <available file="${ivy.jar.file}" property="ivy-exists" />
+  <target name="download-ivy" unless="ivy-exists">
+    <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true" />
+  </target>
+  <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
+    <classpath>
+      <fileset file="${ivy.jar.file}"/>
+    </classpath>
+  </taskdef>
+  <target name="clean">
+    <delete dir="${basedir}/build"/>
+  </target>
+  <target name="init" depends="download-ivy">
+    <ivy:settings file="src/ivy/ivysettings.xml"/>
+    <ivy:resolve file="src/ivy/ivy.xml"/>
+  </target>
+  <target name="compile" depends="init">
+    <echo message="${java.home}"/>
+    <ivy:resolve file="src/ivy/ivy.xml"/>
+    <mkdir dir="${basedir}/build/lib"/>
+    <ivy:retrieve pattern="${basedir}/build/lib/[artifact]-[revision](-[classifier]).[ext]"/>
+    <mkdir dir="${basedir}/build/classes"/>
+    <javac srcdir="${basedir}/src/java" destdir="${basedir}/build/classes">
+      <classpath>
+	<fileset dir="${basedir}/build/lib"/>
+      </classpath>
+    </javac>
+  </target>
+  <target name="publish" depends="compile">
+    <mkdir dir="${basedir}/build"/>
+    <zip destfile="${basedir}/build/${ant.project.name}.zip" basedir="src" compress="yes" level="9"/>
+    <mkdir dir="${repository.dir}"/>
+    <ivy:publish resolver="internal" pubrevision="0.0">
+      <artifacts pattern="${basedir}/build/[artifact].[ext]"/>
+    </ivy:publish>
+  </target>
+</project>
