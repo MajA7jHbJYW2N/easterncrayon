@@ -21,7 +21,7 @@
     along with EasternCrayon.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <project name="easterncrayon" basedir="." default="publish" xmlns:ivy="antlib:org.apache.ivy.ant">
-  <tempfile property="repository.dir" destdir="java.io.tmpdir"/>
+  <tempfile property="repository.dir" destdir="${java.io.tmpdir}"/>
   <property name="ivy.install.version" value="2.1.0-rc2" />
   <property name="ivy.jar.file" value="${basedir}/ivy.jar" />
   <available file="${ivy.jar.file}" property="ivy-exists" />
