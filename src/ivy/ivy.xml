@@ -42,7 +42,7 @@
 	  <mapped name="default"/>
 	</conf>
       </dependency>
-      <dependency org="breezemodern" name="hollowlobster" rev="2.10">
+      <dependency org="breezemodern" name="hollowlobster" rev="3.13">
 	<conf name="_hollowlobster_">
 	  <mapped name="conf"/>
 	</conf>

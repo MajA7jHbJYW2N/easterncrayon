@@ -67,6 +67,7 @@
     <ivy:retrieve pattern="${basedir}/build/hollowlobster/[artifact].[ext]"/>
     <checkstyle config="${basedir}/build/hollowlobster/checks.xml">
       <fileset dir="${basedir}/src/java"/>
+      <property key="java.header.txt" value="${basedir}/build/hollowlobster/java.header.txt"/>
     </checkstyle>
   </target>
   <target name="publish" depends="compile">
