@@ -38,26 +38,50 @@
   </target>
   <target name="init" depends="download-ivy">
     <ivy:settings file="src/ivy/ivysettings.xml"/>
-    <ivy:resolve file="src/ivy/ivy.xml"/>
   </target>
   <target name="compile" depends="init">
-    <echo message="${java.home}"/>
-    <ivy:resolve file="src/ivy/ivy.xml"/>
-    <mkdir dir="${basedir}/build/lib"/>
-    <ivy:retrieve pattern="${basedir}/build/lib/[artifact]-[revision](-[classifier]).[ext]"/>
+    <mkdir dir="${basedir}/build/tree"/>
+    <ivy:resolve file="src/ivy/ivy.xml" conf="_tree_"/>
+    <ivy:retrieve pattern="${basedir}/build/tree/[artifact]-[revision](-[classifier]).[ext]"/>
     <mkdir dir="${basedir}/build/classes"/>
     <javac srcdir="${basedir}/src/java" destdir="${basedir}/build/classes">
       <classpath>
-	<fileset dir="${basedir}/build/lib"/>
+	<fileset dir="${basedir}/build/tree"/>
       </classpath>
     </javac>
+    <mkdir dir="${basedir}/build/publish"/>
+    <jar destfile="${basedir}/build/publish/${ant.project.name}.jar" basedir="${basedir}/build/classes" compress="yes" level="9"/>
+  </target>
+  <target name="checkstyle" depends="init">
+    <mkdir dir="${basedir}/build/lib/checkstyle"/>
+    <ivy:resolve file="src/ivy/ivy.xml" conf="_checkstyle_"/>
+    <ivy:retrieve pattern="${basedir}/build/lib/checkstyle/[artifact]-[revision](-[classifier]).[ext]"/>
+    <taskdef resource="checkstyletask.properties">
+      <classpath>
+        <fileset dir="${basedir}/build/lib/checkstyle"/>
+      </classpath>
+    </taskdef>
+    <mkdir dir="${basedir}/build/hollowlobster"/>
+    <ivy:resolve file="src/ivy/ivy.xml" conf="_hollowlobster_"/>
+    <ivy:retrieve pattern="${basedir}/build/hollowlobster/[artifact].[ext]"/>
+    <checkstyle config="${basedir}/build/hollowlobster/checks.xml">
+      <fileset dir="${basedir}/src/java"/>
+    </checkstyle>
   </target>
   <target name="publish" depends="compile">
     <mkdir dir="${basedir}/build"/>
+    <exec executable="git" output="${basedir}/build/git.rev-list.txt">
+      <arg value="rev-list"/>
+      <arg value="HEAD"/>
+    </exec>
+    <exec executable="wc" outputproperty="version.minor">
+      <arg value="${basedir}/build/git.rev-list.txt"/>
+      <arg value="-l"/>
+    </exec>
     <zip destfile="${basedir}/build/${ant.project.name}.zip" basedir="src" compress="yes" level="9"/>
     <mkdir dir="${repository.dir}"/>
-    <ivy:publish resolver="internal" pubrevision="0.0">
-      <artifacts pattern="${basedir}/build/[artifact].[ext]"/>
+    <ivy:publish resolver="internal" pubrevision="1.${version.minor}">
+      <artifacts pattern="${basedir}/build/publish/[artifact].[ext]"/>
     </ivy:publish>
   </target>
 </project>

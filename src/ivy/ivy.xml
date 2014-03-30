@@ -23,13 +23,29 @@
 <ivy-module version="2.0">
     <info organisation="breezemodern" module="${ant.project.name}"/>
     <configurations>
-      <conf name="runtime" description=""/>
+      <conf name="runtime"/>
+      <conf name="_tree_" visibility="private"/>
+      <conf name="_checkstyle_" visibility="private"/>
+      <conf name="_hollowlobster_" visibility="private"/>
     </configurations>
     <publications defaultconf="runtime">
-      <artifact type="zip"/>
+      <artifact type="jar"/>
     </publications>
     <dependencies>
       <dependency org="com.sun" name="tools" rev="">
+	<conf name="_tree_">
+	  <mapped name="default"/>
+	</conf>
+      </dependency>
+      <dependency org="com.puppycrawl.tools" name="checkstyle" rev="5.6">
+	<conf name="_checkstyle_">
+	  <mapped name="default"/>
+	</conf>
+      </dependency>
+      <dependency org="breezemodern" name="hollowlobster" rev="2.10">
+	<conf name="_hollowlobster_">
+	  <mapped name="conf"/>
+	</conf>
       </dependency>
     </dependencies>
 </ivy-module>
