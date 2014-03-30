@@ -33,7 +33,7 @@
     </publications>
     <dependencies>
       <dependency org="com.sun" name="tools" rev="">
-	<conf name="_tree_">
+	<conf name="runtime">
 	  <mapped name="default"/>
 	</conf>
       </dependency>

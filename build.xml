@@ -42,7 +42,7 @@
   </target>
   <target name="compile" depends="init">
     <mkdir dir="${basedir}/build/tree"/>
-    <ivy:resolve file="src/ivy/ivy.xml" conf="_tree_"/>
+    <ivy:resolve file="src/ivy/ivy.xml" conf="runtime"/>
     <ivy:retrieve pattern="${basedir}/build/tree/[artifact]-[revision](-[classifier]).[ext]"/>
     <mkdir dir="${basedir}/build/classes"/>
     <javac srcdir="${basedir}/src/java" destdir="${basedir}/build/classes">
@@ -71,6 +71,23 @@
     </checkstyle>
   </target>
   <target name="publish" depends="compile">
+    <mkdir dir="${basedir}/build"/>
+    <exec executable="git" output="${basedir}/build/git.rev-list.txt">
+      <arg value="rev-list"/>
+      <arg value="HEAD"/>
+    </exec>
+    <resourcecount property="version.minor">
+      <tokens>
+	<concat>
+	  <filterchain>
+	    <tokenfilter>
+	      <linetokenizer/>
+	    </tokenfilter>
+	  </filterchain>
+	  <fileset file="${basedir}/build/git.rev-list.txt"/>
+	</concat>
+      </tokens>
+    </resourcecount>
     <mkdir dir="${basedir}/build"/>
     <exec executable="git" output="${basedir}/build/git.rev-list.txt">
       <arg value="rev-list"/>
