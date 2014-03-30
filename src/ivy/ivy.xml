@@ -37,7 +37,7 @@
 	  <mapped name="default"/>
 	</conf>
       </dependency>
-      <dependency org="com.puppycrawl.tools" name="checkstyle" rev="5.6">
+      <dependency org="com.puppycrawl.tools" name="checkstyle" rev="5.7">
 	<conf name="_checkstyle_">
 	  <mapped name="default"/>
 	</conf>
