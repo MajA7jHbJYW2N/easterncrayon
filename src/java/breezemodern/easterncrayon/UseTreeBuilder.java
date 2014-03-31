@@ -23,8 +23,19 @@
 
 package breezemodern . easterncrayon ;
 
-import static com . sun . source . tree . Tree . Kind ;
+import java . lang . annotation . Documented ;
+import java . lang . annotation . Inherited ;
+import java . lang . annotation . Retention ;
+import java . lang . annotation . Target ;
 
+import static com . sun . source . tree . Tree . Kind ;
+import static java . lang . annotation . ElementType . METHOD ;
+import static java . lang . annotation . RetentionPolicy . SOURCE ;
+
+@ Documented
+    @ Inherited
+    @ Retention ( METHOD )
+    @ Target ( SOURCE )
 /**
  * Create a TreeBuilder for a specific type of tree.
  **/
