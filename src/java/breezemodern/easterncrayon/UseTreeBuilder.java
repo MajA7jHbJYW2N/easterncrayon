@@ -37,8 +37,8 @@ import static java . lang . annotation . RetentionPolicy . SOURCE ;
  **/
 @ Documented
     @ Inherited
-    @ Retention ( METHOD )
-    @ Target ( SOURCE )
+    @ Retention ( SOURCE )
+    @ Target ( METHOD )
     public @ interface UseTreeBuilder
 	     {
 	     /**

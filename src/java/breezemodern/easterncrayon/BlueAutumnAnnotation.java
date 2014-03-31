@@ -39,8 +39,8 @@ import static java . lang . annotation . RetentionPolicy . SOURCE ;
  **/
 @ Documented
     @ Inherited
-    @ Retention ( TYPE )
-    @ Target ( SOURCE )
+    @ Retention ( SOURCE )
+    @ Target ( TYPE )
     public @ interface BlueAutumnAnnotation
 	     {
     }
