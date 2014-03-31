@@ -32,17 +32,17 @@ import static com . sun . source . tree . Tree . Kind ;
 import static java . lang . annotation . ElementType . METHOD ;
 import static java . lang . annotation . RetentionPolicy . SOURCE ;
 
+/**
+ * Create a TreeBuilder for a specific type of tree.
+ **/
 @ Documented
     @ Inherited
     @ Retention ( METHOD )
     @ Target ( SOURCE )
-/**
- * Create a TreeBuilder for a specific type of tree.
- **/
-public @ interface UseTreeBuilder
-	 {
+    public @ interface UseTreeBuilder
+	     {
 	     /**
 	      * The exact kind of tree this will build.
 	      **/
-	     Class < ? extends Kind > value ( ) ;
-}
+		 Class < ? extends Kind > value ( ) ;
+    }
