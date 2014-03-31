@@ -22,6 +22,21 @@
 ///////////////////////////////////////////////////////////////////////
 
 /**
- * Useful annotations.
+ * Forces annotation processing.
  **/
-package easterncrayon ;
+package breezemodern . easterncrayon ;
+
+import java . lang . annotation . Documented ;
+import java . lang . annotation . Inherited ;
+import java . lang . annotation . Retention ;
+import java . lang . annotation . Target ;
+import static java . lang . annotation . ElementType . TYPE ;
+import static java . lang . annotation . RetentionPolicy . SOURCE ;
+
+@ Documented
+    @ Inherited
+    @ Retention ( TYPE )
+    @ Target ( SOURCE )
+    public @ interface BlueAutumnAnnotation
+	     {
+    }

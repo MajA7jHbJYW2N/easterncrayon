@@ -21,17 +21,7 @@
 //
 ///////////////////////////////////////////////////////////////////////
 
-package easterncrayon ;
-
-import static com . sun . source . tree . Tree . Kind ;
-
 /**
- * Create a TreeBuilder for a specific type of tree.
+ * Useful annotations.
  **/
-public @ interface UseTreeBuilder
-	 {
-	     /**
-	      * The exact kind of tree this will build.
-	      **/
-	     Class < ? extends Kind > value ( ) ;
-}
+package breezemodern . easterncrayon ;
