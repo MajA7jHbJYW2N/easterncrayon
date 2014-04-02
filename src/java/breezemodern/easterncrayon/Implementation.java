@@ -24,17 +24,15 @@
 package breezemodern . easterncrayon ;
 
 import java . lang . annotation . Documented ;
-import java . lang . annotation . Inherited ;
 import java . lang . annotation . Retention ;
 import java . lang . annotation . Target ;
 
-import static java . lang . annotation . ElementType . METHOD ;
-import static java . lang . annotation . RetentionPolicy . CLASS ;
+import static java . lang . annotation . ElementType . TYPE ;
+import static java . lang . annotation . RetentionPolicy . SOURCE ;
 
 @ Documented
-    @ Inherited
-    @ Retention ( CLASS )
-    @ Target ( METHOD )
+    @ Retention ( SOURCE )
+    @ Target ( TYPE )
     public @ interface Implementation
 	     {
 		 String value ( ) ;
