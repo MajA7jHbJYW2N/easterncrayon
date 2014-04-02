@@ -37,5 +37,5 @@ import static java . lang . annotation . RetentionPolicy . SOURCE ;
 	     {
 		 String value ( ) ;
 
-		 boolean fullyQualified ( ) default false ;
+		 boolean defaultPackage ( ) default false ;
     }
