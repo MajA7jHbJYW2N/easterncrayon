@@ -39,5 +39,5 @@ import static java . lang . annotation . RetentionPolicy . CLASS ;
 	     {
 		 String value ( ) ;
 
-		 Boolean fullyQualified ( ) default false ;
+		 boolean fullyQualified ( ) default false ;
     }
