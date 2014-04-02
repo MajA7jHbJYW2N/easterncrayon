@@ -23,25 +23,9 @@
 
 package breezemodern . easterncrayon ;
 
-import java . lang . annotation . Documented ;
-import java . lang . annotation . Retention ;
-import java . lang . annotation . Target ;
-
-import static java . lang . annotation . ElementType . TYPE ;
-import static java . lang . annotation . RetentionPolicy . SOURCE ;
-
-@ Documented
-    @ Retention ( SOURCE )
-    @ Target ( TYPE )
-    public @ interface Implementation
-	     {
-		 String value ( ) ;
-
-		 boolean defaultPackage ( ) default false ;
-
-		 TopLevelVisibility implementationVisibility ( ) default TopLevelVisibility . PUBLIC ;
-
-		 Tangibility implementationTangibility ( ) default Tangibility . CONCRETE ;
-
-		 Conformability implementationConformability ( ) default Conformability . LOOSE ;
-    }
+public @ interface Visibility
+	 {
+	     PUBLIC ,
+		 PACKAGE_PRIVATE
+		 ;
+}
