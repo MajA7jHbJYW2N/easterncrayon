@@ -23,7 +23,7 @@
 
 package breezemodern . easterncrayon ;
 
-public @ interface Visibility
+public enum TopLevelVisibility
 	 {
 	     PUBLIC ,
 		 PACKAGE_PRIVATE

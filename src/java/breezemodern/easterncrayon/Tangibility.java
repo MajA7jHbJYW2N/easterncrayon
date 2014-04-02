@@ -23,7 +23,7 @@
 
 package breezemodern . easterncrayon ;
 
-public @ interface Tangibility
+public enum Tangibility
 	 {
 	     ABSTRACT ,
 		 CONCRETE

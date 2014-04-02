@@ -23,7 +23,7 @@
 
 package breezemodern . easterncrayon ;
 
-public @ interface NestedVisibility
+public enum NestedVisibility
 	 {
 	     PUBLIC ,
 		 PROTECTED ,

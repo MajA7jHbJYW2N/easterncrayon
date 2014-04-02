@@ -23,9 +23,8 @@
 
 package breezemodern . easterncrayon ;
 
-public @ interface Conformability
+public enum Conformability
 	 {
 	     STRICT ,
-		 LOOSE
-		 ;
+		 LOOSE ;
 }
