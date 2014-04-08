@@ -37,5 +37,5 @@ import static java . lang . annotation . RetentionPolicy . RUNTIME ;
     @ Target ( METHOD )
     public @ interface UseIntegerConstant
 	     {
-		 Integer value ( ) ;
+		 int value ( ) ;
     }
