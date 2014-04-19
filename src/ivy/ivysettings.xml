@@ -27,10 +27,10 @@
       <ivy pattern="${repository.dir}/[module]/ivy-[revision].xml" />
       <artifact pattern="${repository.dir}/[organization]/[module]/[conf]/[type]/[artifact]-[revision].[ext]"/>
     </filesystem>
-    <filesystem name="uniquetorpedo">
-      <ivy pattern="${uniquetorpedo.dir}/[module]/ivy-[revision].xml" />
-      <artifact pattern="${uniquetorpedo.dir}/[organization]/[module]/[conf]/[type]/[artifact]-[revision].[ext]"/>      
-    </filesystem>
+    <url name="uniquetorpedo">
+      <ivy pattern="https://raw.githubusercontent.com/MajA7jHbJYW2N/uniquetorpedo/[module]/ivy-[revision].xml" />
+      <artifact pattern="https://raw.githubusercontent.com/MajA7jHbJYW2N/uniquetorpedo/[organization]/[module]/[conf]/[type]/[artifact]-[revision].[ext]"/>      
+    </url>
     <filesystem name="JDK" local="true">
       <artifact pattern="${java.home}/lib/[artifact].[type]" />
       <artifact pattern="${java.home}/../lib/[artifact].[type]" />

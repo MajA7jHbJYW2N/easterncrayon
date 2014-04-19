@@ -98,7 +98,7 @@
       <arg value="-l"/>
     </exec>
     <zip destfile="${basedir}/build/${ant.project.name}.zip" basedir="src" compress="yes" level="9"/>
-    <ivy:publish resolver="internal" pubrevision="1.${version.minor}">
+    <ivy:publish resolver="internal" pubrevision="2.${version.minor}">
       <artifacts pattern="${basedir}/build/publish/[artifact].[ext]"/>
     </ivy:publish>
   </target>
